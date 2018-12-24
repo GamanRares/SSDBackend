@@ -1,11 +1,14 @@
 package SSDBackend.DatabaseEntities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
+@EqualsAndHashCode(exclude = {"user"})
 @Entity
 @Table(name = "UserGame")
 public class UserGame {
@@ -14,16 +17,18 @@ public class UserGame {
     private UserGameId id;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonbTransient
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId("userID")
     private User user;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonbTransient
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId("gameID")
     private Game game;
 
-    @Column(name = "score")
+    @Column(name = "Score")
     private Long score;
 
 }

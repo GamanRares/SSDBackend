@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="SSDBackend_schema@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.11">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
     <root id="1">
       <ServerVersion>8.0.12</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1117,7 +1117,7 @@
     <table id="281" parent="8" name="Role"/>
     <table id="282" parent="8" name="User"/>
     <table id="283" parent="8" name="UserGame"/>
-    <column id="284" parent="280" name="NAME">
+    <column id="284" parent="280" name="Name">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1125,10 +1125,10 @@
     </column>
     <key id="285" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>NAME</ColNames>
+      <ColNames>Name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="286" parent="281" name="ROLENAME">
+    <column id="286" parent="281" name="Name">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1136,85 +1136,96 @@
     </column>
     <key id="287" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ROLENAME</ColNames>
+      <ColNames>Name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="288" parent="282" name="USERNAME">
+    <column id="288" parent="282" name="Username">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="282" name="Email">
+    <column id="289" parent="282" name="Active">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>tinyint(1)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="282" name="First_Name">
+    <column id="290" parent="282" name="Email">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="282" name="Last_Name">
+    <column id="291" parent="282" name="FirstName">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="282" name="Role">
+    <column id="292" parent="282" name="LastName">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="293" parent="282" name="FK_User_Role">
+    <column id="293" parent="282" name="Password">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="294" parent="282" name="Role">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="295" parent="282" name="FK_User_Role">
       <ColNames>Role</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="294" parent="282" name="PRIMARY">
+    <key id="296" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>USERNAME</ColNames>
+      <ColNames>Username</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="295" parent="282" name="FK_User_Role">
+    <foreign-key id="297" parent="282" name="FK_User_Role">
       <ColNames>Role</ColNames>
       <RefSchemaName>ssdbackend_schema</RefSchemaName>
       <RefTableName>Role</RefTableName>
-      <RefColNames>rolename</RefColNames>
+      <RefColNames>name</RefColNames>
     </foreign-key>
-    <column id="296" parent="283" name="score">
+    <column id="298" parent="283" name="Score">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="283" name="GAME_NAME">
+    <column id="299" parent="283" name="GAME_Name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="283" name="USER_USERNAME">
+    <column id="300" parent="283" name="USER_Username">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="299" parent="283" name="FK_UserGame_USER_USERNAME">
-      <ColNames>USER_USERNAME</ColNames>
+    <index id="301" parent="283" name="FK_UserGame_USER_Username">
+      <ColNames>USER_Username</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="300" parent="283" name="PRIMARY">
+    <key id="302" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>GAME_NAME
-USER_USERNAME</ColNames>
+      <ColNames>GAME_Name
+USER_Username</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="301" parent="283" name="FK_UserGame_GAME_NAME">
-      <ColNames>GAME_NAME</ColNames>
+    <foreign-key id="303" parent="283" name="FK_UserGame_GAME_Name">
+      <ColNames>GAME_Name</ColNames>
       <RefSchemaName>ssdbackend_schema</RefSchemaName>
       <RefTableName>Game</RefTableName>
       <RefColNames>name</RefColNames>
     </foreign-key>
-    <foreign-key id="302" parent="283" name="FK_UserGame_USER_USERNAME">
-      <ColNames>USER_USERNAME</ColNames>
+    <foreign-key id="304" parent="283" name="FK_UserGame_USER_Username">
+      <ColNames>USER_Username</ColNames>
       <RefSchemaName>ssdbackend_schema</RefSchemaName>
       <RefTableName>User</RefTableName>
       <RefColNames>username</RefColNames>

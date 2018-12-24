@@ -2,10 +2,8 @@ package SSDBackend.DatabaseEntities;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +15,11 @@ public class Game {
 
     @NotNull
     @Id
+    @Column(name = "Name")
     private String name;
 
-    @OneToMany(mappedBy = "game")
+    @JsonbTransient
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
     private List<UserGame> userGameList = new ArrayList<>();
 
 }

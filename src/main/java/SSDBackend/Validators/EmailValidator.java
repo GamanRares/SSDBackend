@@ -7,7 +7,7 @@ public class EmailValidator implements ConstraintValidator<EmailValidation, Stri
 
     /**
      * Checks if the email parameter is a valid email address, having the following format :
-     * [adresa]@msggroup.com
+     * [address]@yahoo.com
      *
      * @param email                      Email address as a string which is going to be validated
      * @param constraintValidatorContext
@@ -16,7 +16,7 @@ public class EmailValidator implements ConstraintValidator<EmailValidation, Stri
     @Override
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
 
-        return email.matches("^[0-9a-zA-Z_]+@msggroup.com$");
+        return email.matches("^[0-9a-zA-Z_]+@yahoo.com$");
     }
 
 }
