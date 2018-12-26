@@ -12,6 +12,9 @@ public class RESTApplication extends Application {
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<>();
         classes.add(RESTUser.class);
+        classes.add(RESTGame.class);
+        classes.add(RESTRole.class);
+        classes.add(RESTUserGame.class);
 
         return classes;
     }

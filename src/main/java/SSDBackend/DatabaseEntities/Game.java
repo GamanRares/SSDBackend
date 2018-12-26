@@ -18,7 +18,6 @@ public class Game {
     @Column(name = "Name")
     private String name;
 
-    @JsonbTransient
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
     private List<UserGame> userGameList = new ArrayList<>();
 

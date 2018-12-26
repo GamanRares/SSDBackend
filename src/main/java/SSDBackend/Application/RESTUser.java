@@ -2,7 +2,7 @@ package SSDBackend.Application;
 
 import SSDBackend.BackingBeans.BusinessLogic.UserEJB;
 import SSDBackend.DatabaseEntities.User;
-import SSDBackend.Exceptions.NotSuchRoleException;
+import SSDBackend.Exceptions.NoSuchRoleException;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
@@ -26,32 +26,32 @@ public class RESTUser {
     }
 
     @GET
-    @Path("getUserByUsername/{username}")
-    public User getUserByUsername(@PathParam("username") String username) {
+    @Path("getUserByUsername")
+    public User getUserByUsername(@QueryParam("username") String username) {
 
         return this.userEJB.getUserByUsername(username);
 
     }
 
     @GET
-    @Path("existsUser/{username}")
-    public boolean existsUser(@PathParam("username") String username) {
+    @Path("existsUser")
+    public boolean existsUser(@QueryParam("username") String username) {
 
         return this.userEJB.existsUser(username);
 
     }
 
     @GET
-    @Path("isActive/{username}")
-    public boolean isActive(@PathParam("username") String username) {
+    @Path("isActive")
+    public boolean isActive(@QueryParam("username") String username) {
 
         return this.userEJB.isActive(username);
 
     }
 
     @POST
-    @Path("unbanUser/{username}")
-    public boolean unbanUser(@PathParam("username") String username) {
+    @Path("unbanUser")
+    public boolean unbanUser(@QueryParam("username") String username) {
 
         return this.userEJB.banOrUnbanUser(username, Boolean.TRUE);
 
@@ -75,7 +75,7 @@ public class RESTUser {
 
             return "User Added successfully !";
 
-        } catch (NotSuchRoleException e) {
+        } catch (NoSuchRoleException e) {
 
             return e.getMessage();
 
@@ -98,8 +98,8 @@ public class RESTUser {
     }
 
     @DELETE
-    @Path("banUser/{username}")
-    public boolean banUser(@PathParam("username") String username) {
+    @Path("banUser")
+    public boolean banUser(@QueryParam("username") String username) {
 
         return this.userEJB.banOrUnbanUser(username, Boolean.FALSE);
 

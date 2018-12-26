@@ -3,7 +3,7 @@ package SSDBackend.BackingBeans.BusinessLogic;
 import SSDBackend.DatabaseEntities.Role;
 import SSDBackend.DatabaseEntities.User;
 import SSDBackend.DatabaseEntities.User_;
-import SSDBackend.Exceptions.NotSuchRoleException;
+import SSDBackend.Exceptions.NoSuchRoleException;
 import lombok.Data;
 
 import javax.ejb.Stateless;
@@ -23,15 +23,15 @@ public class UserEJB implements Serializable {
     @Inject
     private RoleEJB roleEJB;
 
-    public void addUser(String username, String password, Boolean active, String lastName, String firstName, String email, String roleName) throws NotSuchRoleException, ConstraintViolationException {
+    public void addUser(String username, String password, Boolean active, String lastName, String firstName, String email, String roleName) throws NoSuchRoleException, ConstraintViolationException {
 
-        Role role = this.roleEJB.getRole(roleName);
+        Role role = this.roleEJB.getRoleByName(roleName);
 
         if (role == null)
-            throw new NotSuchRoleException("Incorrect roleName");
+            throw new NoSuchRoleException("Incorrect roleName");
 
         User user = new User();
-        this.setUserAttributes(user,username,password,active,lastName,firstName,email,role);
+        this.setUserAttributes(user, username, password, active, lastName, firstName, email, role);
 
         this.businessLogic.getEm().persist(user);
 
@@ -84,13 +84,13 @@ public class UserEJB implements Serializable {
 
     public boolean existsUser(String username) {
 
-       return this.getUserByUsername(username) != null;
+        return this.getUserByUsername(username) != null;
 
     }
 
     public boolean banOrUnbanUser(String username, Boolean active) {
 
-        CriteriaBuilder builder =  this.businessLogic.getEm().getCriteriaBuilder();
+        CriteriaBuilder builder = this.businessLogic.getEm().getCriteriaBuilder();
 
         CriteriaUpdate<User> updateQuery = builder.createCriteriaUpdate(User.class);
         Root<User> e = updateQuery.from(User.class);

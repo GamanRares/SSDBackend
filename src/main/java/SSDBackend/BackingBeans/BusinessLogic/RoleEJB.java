@@ -18,7 +18,7 @@ public class RoleEJB {
     @Inject
     private BusinessLogic businessLogic;
 
-    public Role getRole(String roleName) {
+    public Role getRoleByName(String roleName) {
 
         CriteriaBuilder builder = this.businessLogic.getEm().getCriteriaBuilder();
 
@@ -31,6 +31,19 @@ public class RoleEJB {
         List<Role> roles = this.businessLogic.getEm().createQuery(query).getResultList();
 
         return roles.isEmpty() ? null : roles.get(0);
+
+    }
+
+    public List<Role> getAllRoles() {
+
+        CriteriaBuilder builder = this.businessLogic.getEm().getCriteriaBuilder();
+
+        CriteriaQuery<Role> query = builder.createQuery(Role.class);
+        Root<Role> e = query.from(Role.class);
+
+        query.select(e);
+
+        return this.businessLogic.getEm().createQuery(query).getResultList();
 
     }
 
