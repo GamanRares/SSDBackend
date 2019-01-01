@@ -18,7 +18,7 @@ public class RESTUser {
     private UserEJB userEJB;
 
     @GET
-    @Path("getAllUsers")
+    @Path("/getAllUsers")
     public List<User> getAllUsers() {
 
         return this.userEJB.getAllUsers();
@@ -26,7 +26,7 @@ public class RESTUser {
     }
 
     @GET
-    @Path("getUserByUsername")
+    @Path("/getUserByUsername")
     public User getUserByUsername(@QueryParam("username") String username) {
 
         return this.userEJB.getUserByUsername(username);
@@ -34,7 +34,7 @@ public class RESTUser {
     }
 
     @GET
-    @Path("existsUser")
+    @Path("/existsUser")
     public boolean existsUser(@QueryParam("username") String username) {
 
         return this.userEJB.existsUser(username);
@@ -42,7 +42,7 @@ public class RESTUser {
     }
 
     @GET
-    @Path("isActive")
+    @Path("/isActive")
     public boolean isActive(@QueryParam("username") String username) {
 
         return this.userEJB.isActive(username);
@@ -50,7 +50,7 @@ public class RESTUser {
     }
 
     @POST
-    @Path("unbanUser")
+    @Path("/unbanUser")
     public boolean unbanUser(@QueryParam("username") String username) {
 
         return this.userEJB.banOrUnbanUser(username, Boolean.TRUE);
@@ -58,7 +58,7 @@ public class RESTUser {
     }
 
     @POST
-    @Path("checkCredentials")
+    @Path("/checkCredentials")
     public boolean checkCredentials(@QueryParam("username") String username, @QueryParam("password") String password) {
 
         return this.userEJB.checkCredentials(username, password);
@@ -66,7 +66,7 @@ public class RESTUser {
     }
 
     @POST
-    @Path("addUser")
+    @Path("/addUser")
     public String addUser(@QueryParam("username") String username, @QueryParam("password") String password, @QueryParam("active") Boolean active, @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName, @QueryParam("email") String email, @QueryParam("roleName") String roleName) {
 
         try {
@@ -98,7 +98,7 @@ public class RESTUser {
     }
 
     @DELETE
-    @Path("banUser")
+    @Path("/banUser")
     public boolean banUser(@QueryParam("username") String username) {
 
         return this.userEJB.banOrUnbanUser(username, Boolean.FALSE);

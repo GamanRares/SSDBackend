@@ -31,7 +31,7 @@ public class RESTGame {
     }
 
     @POST
-    @Path("addGame")
+    @Path("/addGame")
     public String addGame(@QueryParam("gameName") String gameName) {
 
         try {
@@ -43,6 +43,24 @@ public class RESTGame {
         } catch (EJBException e) {
 
             return "Game already exists";
+
+        }
+
+    }
+
+    @DELETE
+    @Path("/deleteGame")
+    public String deleteGame(@QueryParam("gameName") String gameName) {
+
+        try {
+
+            this.gameEJB.deleteGame(gameName);
+
+            return "Game Deleted successfully";
+
+        } catch (EJBException e) {
+
+            return "Game couldn't be deleted";
 
         }
 
