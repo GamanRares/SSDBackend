@@ -12,6 +12,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("/userGame")
 public class RESTUserGame {
@@ -19,22 +21,35 @@ public class RESTUserGame {
     @Inject
     private UserGameEJB userGameEJB;
 
+    @Inject
+    private Logger logger;
+
+    //localhost:8080/SSDBackend/userGame/getAllUserGames
     @GET
     @Path("/getAllUserGames")
     public List<UserGame> getAllUserGames() {
+
+        this.logger.log(Level.INFO, "All UserGames retrieved successfully from database.");
 
         return this.userGameEJB.getAllUserGames();
 
     }
 
+    //localhost:8080/SSDBackend/userGame/getUserGame?username=username&gameName=gameName
     @GET
     @Path("/getUserGame")
     public UserGame getUserGame(@QueryParam("username") String username, @QueryParam("gameName") String gameName) {
 
-        return this.userGameEJB.getUserGame(username, gameName);
+        UserGame retrievedUserGame = this.userGameEJB.getUserGame(username, gameName);
+
+        if (retrievedUserGame != null)
+            this.logger.log(Level.INFO, "UserGame " + username + " " + gameName + " retrieved successfully from database.");
+
+        return retrievedUserGame;
 
     }
 
+    //localhost:8080/SSDBackend/userGame/addUserGame?username=username&gameName=gameName&score=score
     @POST
     @Path("/addUserGame")
     public String addUserGame(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {
@@ -43,18 +58,26 @@ public class RESTUserGame {
 
             this.userGameEJB.addUserGame(username, gameName, score);
 
+            this.logger.log(Level.INFO, "UserGame " + username + " " + gameName + " added successfully to database.");
+
             return "UserGame added successfully";
 
         } catch (NoSuchUserException | NoSuchGameException e) {
 
+            this.logger.log(Level.WARNING, e.getMessage());
+
             return e.getMessage();
 
         } catch (EJBException e) {
+
+            this.logger.log(Level.SEVERE, "UserGame " + username + " " + gameName + " already exists in the database.");
+
             return "UserGame already exists";
         }
 
     }
 
+    //localhost:8080/SSDBackend/userGame/updateScore?username=username&gameName=gameName&score=score
     @POST
     @Path("/updateScore")
     public boolean updateScore(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {
