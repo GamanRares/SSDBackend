@@ -45,7 +45,7 @@ public class RESTGame {
     }
 
     //localhost:8080/SSDBackend/game/addGame?gameName=gameName
-    @POST
+    @GET
     @Path("/addGame")
     public String addGame(@QueryParam("gameName") String gameName) {
 
@@ -68,7 +68,7 @@ public class RESTGame {
     }
 
     //localhost:8080/SSDBackend/game/deleteGame?gameName=gameName
-    @DELETE
+    @GET
     @Path("/deleteGame")
     public String deleteGame(@QueryParam("gameName") String gameName) {
 

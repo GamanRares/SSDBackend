@@ -50,7 +50,7 @@ public class RESTUserGame {
     }
 
     //localhost:8080/SSDBackend/userGame/addUserGame?username=username&gameName=gameName&score=score
-    @POST
+    @GET
     @Path("/addUserGame")
     public String addUserGame(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {
 

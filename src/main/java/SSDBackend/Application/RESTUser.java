@@ -66,7 +66,7 @@ public class RESTUser {
     }
 
     //localhost:8080/SSDBackend/user/unbanUser?username=username
-    @POST
+    @GET
     @Path("/unbanUser")
     public boolean unbanUser(@QueryParam("username") String username) {
 
@@ -75,7 +75,7 @@ public class RESTUser {
     }
 
     //localhost:8080/SSDBackend/user/checkCredentials?username=username&password=password
-    @POST
+    @GET
     @Path("/checkCredentials")
     public boolean checkCredentials(@QueryParam("username") String username, @QueryParam("password") String password) {
 
@@ -84,7 +84,7 @@ public class RESTUser {
     }
 
     //localhost:8080/SSDBackend/user/addUser?username=username&password=password&active=active&firstName=firstName&lastName=lastName&email=email&roleName=roleName
-    @POST
+    @GET
     @Path("/addUser")
     public String addUser(@QueryParam("username") String username, @QueryParam("password") String password, @QueryParam("active") Boolean active, @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName, @QueryParam("email") String email, @QueryParam("roleName") String roleName) {
 
@@ -97,6 +97,8 @@ public class RESTUser {
             return "User Added successfully !";
 
         } catch (NoSuchRoleException e) {
+
+            this.logger.log(Level.WARNING, "Role " + roleName + " is not correct");
 
             return e.getMessage();
 
@@ -127,7 +129,7 @@ public class RESTUser {
     }
 
     //localhost:8080/SSDBackend/user/banUser?username=username
-    @DELETE
+    @GET
     @Path("/banUser")
     public boolean banUser(@QueryParam("username") String username) {
 
