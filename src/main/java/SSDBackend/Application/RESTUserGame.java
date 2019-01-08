@@ -3,6 +3,7 @@ package SSDBackend.Application;
 import SSDBackend.BackingBeans.BusinessLogic.UserGameEJB;
 import SSDBackend.DatabaseEntities.UserGame;
 import SSDBackend.Exceptions.NoSuchGameException;
+import SSDBackend.Exceptions.NoSuchOrderException;
 import SSDBackend.Exceptions.NoSuchUserException;
 
 import javax.ejb.EJBException;
@@ -32,6 +33,28 @@ public class RESTUserGame {
         this.logger.log(Level.INFO, "All UserGames retrieved successfully from database.");
 
         return this.userGameEJB.getAllUserGames();
+
+    }
+
+    //localhost:8080/SSDBackend/userGame/getAllUserGamesOrdered?gameNameOrder=gameNameOrder&gameScoreOrder=gameScoreOrder
+    @GET
+    @Path("/getAllUserGamesOrdered")
+    public List<UserGame> getAllUserGamesOrdered(@QueryParam("gameNameOrder") String gameNameOrder, @QueryParam("gameScoreOrder") String gameScoreOrder) {
+
+        try {
+
+            List<UserGame> retrievedUserGames = this.userGameEJB.getAllUserGamesOrdered(gameNameOrder, gameScoreOrder);
+
+            if (retrievedUserGames != null)
+                this.logger.log(Level.INFO, "AllUserGames retrieved successfully from database.");
+
+            return retrievedUserGames;
+
+        } catch (NoSuchOrderException e) {
+
+            return null;
+
+        }
 
     }
 

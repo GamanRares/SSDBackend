@@ -6,6 +6,7 @@ import SSDBackend.DatabaseEntities.User_;
 import SSDBackend.Exceptions.NoSuchRoleException;
 import lombok.Data;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.criteria.*;
@@ -23,7 +24,7 @@ public class UserEJB implements Serializable {
     @Inject
     private RoleEJB roleEJB;
 
-    public void addUser(String username, String password, Boolean active, String lastName, String firstName, String email, String roleName) throws NoSuchRoleException, ConstraintViolationException {
+    public void addUser(String username, String password, Boolean active, String lastName, String firstName, String email, String roleName) throws NoSuchRoleException, ConstraintViolationException, EJBException {
 
         Role role = this.roleEJB.getRoleByName(roleName);
 

@@ -2,6 +2,7 @@ package SSDBackend.BackingBeans.BusinessLogic;
 
 import SSDBackend.DatabaseEntities.*;
 import SSDBackend.Exceptions.NoSuchGameException;
+import SSDBackend.Exceptions.NoSuchOrderException;
 import SSDBackend.Exceptions.NoSuchUserException;
 import lombok.Data;
 
@@ -9,8 +10,10 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -72,6 +75,37 @@ public class UserGameEJB implements Serializable {
         List<UserGame> userGames = this.businessLogic.getEm().createQuery(query).getResultList();
 
         return userGames.isEmpty() ? null : userGames.get(0);
+
+    }
+
+    public List<UserGame> getAllUserGamesOrdered(String gameNameOrder, String scoreOrder) throws NoSuchOrderException {
+
+        if ( (!gameNameOrder.equals("ASC") && !gameNameOrder.equals("DESC")) || (!scoreOrder.equals("ASC") && !scoreOrder.equals("DESC")))
+            throw new NoSuchOrderException("Order must be ASC or DESC only");
+
+        CriteriaBuilder builder = this.businessLogic.getEm().getCriteriaBuilder();
+
+        CriteriaQuery<UserGame> query = builder.createQuery(UserGame.class);
+        Root<UserGame> e = query.from(UserGame.class);
+
+        List<Order> orderList = new ArrayList<>();
+
+        if (gameNameOrder.equals("ASC")) {
+            orderList.add(builder.asc(e.get(UserGame_.game)));
+        } else {
+            orderList.add(builder.desc(e.get(UserGame_.game)));
+        }
+
+        if (scoreOrder.equals("ASC")) {
+            orderList.add(builder.asc(e.get(UserGame_.score)));
+        } else {
+            orderList.add(builder.desc(e.get(UserGame_.score)));
+        }
+
+        query.select(e)
+                .orderBy(orderList);
+
+        return this.businessLogic.getEm().createQuery(query).getResultList();
 
     }
 
