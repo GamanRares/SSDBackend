@@ -92,24 +92,5 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.arquillian.testenricher:arquillian-testenricher-resource:1.1.15.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.arquillian.testenricher:arquillian-testenricher-initialcontext:1.1.15.Final" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.46" level="project" />
-    <orderEntry type="library" name="Maven: com.github.jsimone:webapp-runner:9.0.14.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-annotations-api:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-jasper:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jdt:ecj:3.15.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jasper:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-juli:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-el-api:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-api:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-util-scan:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-util:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jasper-el:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.14" level="project" />
-    <orderEntry type="library" name="Maven: com.beust:jcommander:1.72" level="project" />
-    <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
   </component>
 </module>

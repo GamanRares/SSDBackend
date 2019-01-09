@@ -8,10 +8,8 @@ import SSDBackend.Exceptions.NoSuchUserException;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +26,7 @@ public class RESTUserGame {
     //localhost:8080/SSDBackend/userGame/getAllUserGames
     @GET
     @Path("/getAllUserGames")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<UserGame> getAllUserGames() {
 
         this.logger.log(Level.INFO, "All UserGames retrieved successfully from database.");
@@ -39,6 +38,7 @@ public class RESTUserGame {
     //localhost:8080/SSDBackend/userGame/getAllUserGamesOrdered?gameNameOrder=gameNameOrder&gameScoreOrder=gameScoreOrder
     @GET
     @Path("/getAllUserGamesOrdered")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<UserGame> getAllUserGamesOrdered(@QueryParam("gameNameOrder") String gameNameOrder, @QueryParam("gameScoreOrder") String gameScoreOrder) {
 
         try {
@@ -61,6 +61,7 @@ public class RESTUserGame {
     //localhost:8080/SSDBackend/userGame/getUserGame?username=username&gameName=gameName
     @GET
     @Path("/getUserGame")
+    @Produces(MediaType.APPLICATION_JSON)
     public UserGame getUserGame(@QueryParam("username") String username, @QueryParam("gameName") String gameName) {
 
         UserGame retrievedUserGame = this.userGameEJB.getUserGame(username, gameName);
@@ -75,6 +76,7 @@ public class RESTUserGame {
     //localhost:8080/SSDBackend/userGame/addUserGame?username=username&gameName=gameName&score=score
     @GET
     @Path("/addUserGame")
+    @Produces(MediaType.APPLICATION_JSON)
     public String addUserGame(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {
 
         try {
@@ -103,6 +105,7 @@ public class RESTUserGame {
     //localhost:8080/SSDBackend/userGame/updateScore?username=username&gameName=gameName&score=score
     @POST
     @Path("/updateScore")
+    @Produces(MediaType.APPLICATION_JSON)
     public boolean updateScore(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {
 
         try {

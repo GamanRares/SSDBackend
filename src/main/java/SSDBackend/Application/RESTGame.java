@@ -6,6 +6,7 @@ import SSDBackend.DatabaseEntities.Game;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ public class RESTGame {
     //localhost:8080/SSDBackend/game/getAllGames
     @GET
     @Path("/getAllGames")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Game> getAllGames() {
 
         this.logger.log(Level.INFO, "All games retrieved successfully from database");
@@ -33,6 +35,7 @@ public class RESTGame {
     //localhost:8080/SSDBackend/game/getGameByName?gameName=gameName
     @GET
     @Path("/getGameByName")
+    @Produces(MediaType.APPLICATION_JSON)
     public Game getGameByName(@QueryParam("gameName") String gameName) {
 
         Game retrievedGame = this.gameEJB.getGameByName(gameName);
@@ -47,6 +50,7 @@ public class RESTGame {
     //localhost:8080/SSDBackend/game/addGame?gameName=gameName
     @GET
     @Path("/addGame")
+    @Produces(MediaType.APPLICATION_JSON)
     public String addGame(@QueryParam("gameName") String gameName) {
 
         try {
@@ -70,6 +74,7 @@ public class RESTGame {
     //localhost:8080/SSDBackend/game/deleteGame?gameName=gameName
     @GET
     @Path("/deleteGame")
+    @Produces(MediaType.APPLICATION_JSON)
     public String deleteGame(@QueryParam("gameName") String gameName) {
 
         try {

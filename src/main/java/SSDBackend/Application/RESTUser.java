@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.transaction.RollbackException;
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/getAllUsers
     @GET
     @Path("/getAllUsers")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUsers() {
 
         logger.log(Level.INFO, "All users successfully retrieved from database");
@@ -36,6 +38,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/getUserByUsername?username=username
     @GET
     @Path("/getUserByUsername")
+    @Produces(MediaType.APPLICATION_JSON)
     public User getUserByUsername(@QueryParam("username") String username) {
 
         User retrievedUser = this.userEJB.getUserByUsername(username);
@@ -50,6 +53,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/existsUser?username=username
     @GET
     @Path("/existsUser")
+    @Produces(MediaType.APPLICATION_JSON)
     public boolean existsUser(@QueryParam("username") String username) {
 
         return this.userEJB.existsUser(username);
@@ -59,6 +63,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/isActive?username=username
     @GET
     @Path("/isActive")
+    @Produces(MediaType.APPLICATION_JSON)
     public boolean isActive(@QueryParam("username") String username) {
 
         return this.userEJB.isActive(username);
@@ -68,6 +73,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/unbanUser?username=username
     @GET
     @Path("/unbanUser")
+    @Produces(MediaType.APPLICATION_JSON)
     public boolean unbanUser(@QueryParam("username") String username) {
 
         return this.userEJB.banOrUnbanUser(username, Boolean.TRUE);
@@ -77,6 +83,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/checkCredentials?username=username&password=password
     @GET
     @Path("/checkCredentials")
+    @Produces(MediaType.APPLICATION_JSON)
     public boolean checkCredentials(@QueryParam("username") String username, @QueryParam("password") String password) {
 
         return this.userEJB.checkCredentials(username, password);
@@ -86,6 +93,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/addUser?username=username&password=password&active=active&firstName=firstName&lastName=lastName&email=email&roleName=roleName
     @GET
     @Path("/addUser")
+    @Produces(MediaType.APPLICATION_JSON)
     public String addUser(@QueryParam("username") String username, @QueryParam("password") String password, @QueryParam("active") Boolean active, @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName, @QueryParam("email") String email, @QueryParam("roleName") String roleName) {
 
         try {
@@ -131,6 +139,7 @@ public class RESTUser {
     //localhost:8080/SSDBackend/user/banUser?username=username
     @GET
     @Path("/banUser")
+    @Produces(MediaType.APPLICATION_JSON)
     public boolean banUser(@QueryParam("username") String username) {
 
         return this.userEJB.banOrUnbanUser(username, Boolean.FALSE);
