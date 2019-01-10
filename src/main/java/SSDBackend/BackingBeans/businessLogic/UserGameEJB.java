@@ -1,9 +1,9 @@
-package SSDBackend.BackingBeans.BusinessLogic;
+package SSDBackend.BackingBeans.businessLogic;
 
-import SSDBackend.DatabaseEntities.*;
-import SSDBackend.Exceptions.NoSuchGameException;
-import SSDBackend.Exceptions.NoSuchOrderException;
-import SSDBackend.Exceptions.NoSuchUserException;
+import SSDBackend.databaseEntities.*;
+import SSDBackend.exceptions.NoSuchGameException;
+import SSDBackend.exceptions.NoSuchOrderException;
+import SSDBackend.exceptions.NoSuchUserException;
 import lombok.Data;
 
 import javax.ejb.Stateless;

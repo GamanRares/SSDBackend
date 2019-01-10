@@ -1,7 +1,7 @@
-package SSDBackend.Application;
+package SSDBackend.application;
 
-import SSDBackend.BackingBeans.BusinessLogic.RoleEJB;
-import SSDBackend.DatabaseEntities.Role;
+import SSDBackend.BackingBeans.businessLogic.RoleEJB;
+import SSDBackend.databaseEntities.Role;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

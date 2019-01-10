@@ -1,11 +1,10 @@
-package SSDBackend.DatabaseEntities;
+package SSDBackend.databaseEntities;
 
-import SSDBackend.Validators.EmailValidation;
+import SSDBackend.validators.EmailValidation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
-package SSDBackend.BackingBeans.BusinessLogic;
+package SSDBackend.BackingBeans.businessLogic;
 
-import SSDBackend.DatabaseEntities.Role;
-import SSDBackend.DatabaseEntities.User;
-import SSDBackend.DatabaseEntities.User_;
-import SSDBackend.Exceptions.NoSuchRoleException;
+import SSDBackend.databaseEntities.Role;
+import SSDBackend.databaseEntities.User;
+import SSDBackend.databaseEntities.User_;
+import SSDBackend.exceptions.NoSuchRoleException;
 import lombok.Data;
 
 import javax.ejb.EJBException;

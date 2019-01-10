@@ -1,4 +1,4 @@
-package SSDBackend.Loggers;
+package SSDBackend.loggers;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;

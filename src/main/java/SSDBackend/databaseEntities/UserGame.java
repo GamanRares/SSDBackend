@@ -1,4 +1,4 @@
-package SSDBackend.DatabaseEntities;
+package SSDBackend.databaseEntities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

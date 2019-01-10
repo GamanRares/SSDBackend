@@ -1,4 +1,4 @@
-package SSDBackend.Application;
+package SSDBackend.application;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

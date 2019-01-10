@@ -1,8 +1,9 @@
-package SSDBackend.Application;
+package SSDBackend.application;
 
-import SSDBackend.BackingBeans.BusinessLogic.UserEJB;
-import SSDBackend.DatabaseEntities.User;
-import SSDBackend.Exceptions.NoSuchRoleException;
+import SSDBackend.BackingBeans.businessLogic.UserEJB;
+import SSDBackend.databaseEntities.User;
+import SSDBackend.exceptions.NoSuchRoleException;
+import SSDBackend.message.Message;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
@@ -94,7 +95,7 @@ public class RESTUser {
     @GET
     @Path("/addUser")
     @Produces(MediaType.APPLICATION_JSON)
-    public String addUser(@QueryParam("username") String username, @QueryParam("password") String password, @QueryParam("active") Boolean active, @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName, @QueryParam("email") String email, @QueryParam("roleName") String roleName) {
+    public Message addUser(@QueryParam("username") String username, @QueryParam("password") String password, @QueryParam("active") Boolean active, @QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName, @QueryParam("email") String email, @QueryParam("roleName") String roleName) {
 
         try {
 
@@ -102,13 +103,13 @@ public class RESTUser {
 
             this.logger.log(Level.INFO, "User " + username + " added successfully to the database");
 
-            return "User Added successfully !";
+            return new Message("User Added successfully !");
 
         } catch (NoSuchRoleException e) {
 
             this.logger.log(Level.WARNING, "Role " + roleName + " is not correct");
 
-            return e.getMessage();
+            return new Message(e.getMessage());
 
         } catch (EJBException e) {
 
@@ -116,7 +117,7 @@ public class RESTUser {
 
                 this.logger.log(Level.SEVERE, "User " + username + " already exists in the database");
 
-                return "User already exists !";
+                return new Message("User already exists !");
 
             }
 
@@ -130,7 +131,7 @@ public class RESTUser {
 
                 this.logger.log(Level.WARNING, "User " + username + "couldn't be added to the database :" + stringBuilder.toString());
 
-                return stringBuilder.toString();
+                return new Message(stringBuilder.toString());
             }
         }
 

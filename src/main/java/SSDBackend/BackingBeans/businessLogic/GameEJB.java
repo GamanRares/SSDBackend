@@ -1,7 +1,7 @@
-package SSDBackend.BackingBeans.BusinessLogic;
+package SSDBackend.BackingBeans.businessLogic;
 
-import SSDBackend.DatabaseEntities.Game;
-import SSDBackend.DatabaseEntities.Game_;
+import SSDBackend.databaseEntities.Game;
+import SSDBackend.databaseEntities.Game_;
 import lombok.Data;
 
 import javax.ejb.EJBException;

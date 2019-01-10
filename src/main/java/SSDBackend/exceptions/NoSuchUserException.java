@@ -1,4 +1,4 @@
-package SSDBackend.Exceptions;
+package SSDBackend.exceptions;
 
 public class NoSuchUserException extends Exception {
 

@@ -1,7 +1,8 @@
-package SSDBackend.Application;
+package SSDBackend.application;
 
-import SSDBackend.BackingBeans.BusinessLogic.GameEJB;
-import SSDBackend.DatabaseEntities.Game;
+import SSDBackend.BackingBeans.businessLogic.GameEJB;
+import SSDBackend.databaseEntities.Game;
+import SSDBackend.message.Message;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
@@ -51,7 +52,7 @@ public class RESTGame {
     @GET
     @Path("/addGame")
     @Produces(MediaType.APPLICATION_JSON)
-    public String addGame(@QueryParam("gameName") String gameName) {
+    public Message addGame(@QueryParam("gameName") String gameName) {
 
         try {
 
@@ -59,13 +60,13 @@ public class RESTGame {
 
             this.logger.log(Level.INFO, "Game " + gameName + "successfully added to database");
 
-            return "Game Added successfully";
+            return new Message("Game Added successfully");
 
         } catch (EJBException e) {
 
             this.logger.log(Level.SEVERE, "Game " + gameName + " already exists in database");
 
-            return "Game already exists";
+            return new Message("Game already exists");
 
         }
 
@@ -75,7 +76,7 @@ public class RESTGame {
     @GET
     @Path("/deleteGame")
     @Produces(MediaType.APPLICATION_JSON)
-    public String deleteGame(@QueryParam("gameName") String gameName) {
+    public Message deleteGame(@QueryParam("gameName") String gameName) {
 
         try {
 
@@ -83,13 +84,13 @@ public class RESTGame {
 
             this.gameEJB.deleteGame(gameName);
 
-            return "Game Deleted successfully";
+            return new Message("Game Deleted successfully");
 
         } catch (EJBException e) {
 
             this.logger.log(Level.SEVERE, "Game " + gameName + " couldn't be deleted from database, it might not exists in the database");
 
-            return "Game couldn't be deleted";
+            return new Message("Game Deleted successfully");
 
         }
 

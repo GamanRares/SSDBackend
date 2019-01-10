@@ -1,10 +1,11 @@
-package SSDBackend.Application;
+package SSDBackend.application;
 
-import SSDBackend.BackingBeans.BusinessLogic.UserGameEJB;
-import SSDBackend.DatabaseEntities.UserGame;
-import SSDBackend.Exceptions.NoSuchGameException;
-import SSDBackend.Exceptions.NoSuchOrderException;
-import SSDBackend.Exceptions.NoSuchUserException;
+import SSDBackend.BackingBeans.businessLogic.UserGameEJB;
+import SSDBackend.databaseEntities.UserGame;
+import SSDBackend.exceptions.NoSuchGameException;
+import SSDBackend.exceptions.NoSuchOrderException;
+import SSDBackend.exceptions.NoSuchUserException;
+import SSDBackend.message.Message;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
@@ -77,7 +78,7 @@ public class RESTUserGame {
     @GET
     @Path("/addUserGame")
     @Produces(MediaType.APPLICATION_JSON)
-    public String addUserGame(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {
+    public Message addUserGame(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {
 
         try {
 
@@ -85,19 +86,19 @@ public class RESTUserGame {
 
             this.logger.log(Level.INFO, "UserGame " + username + " " + gameName + " added successfully to database.");
 
-            return "UserGame added successfully";
+            return new Message("UserGame added successfully");
 
         } catch (NoSuchUserException | NoSuchGameException e) {
 
             this.logger.log(Level.WARNING, e.getMessage());
 
-            return e.getMessage();
+            return new Message(e.getMessage());
 
         } catch (EJBException e) {
 
             this.logger.log(Level.SEVERE, "UserGame " + username + " " + gameName + " already exists in the database.");
 
-            return "UserGame already exists";
+            return new Message("UserGame already exists");
         }
 
     }

@@ -12,7 +12,7 @@
 
         <properties>
             <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql7.freemysqlhosting.net/sql7273308"/>-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql7.freemysqlhosting.net/sql7273308?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"/>-->
             <!--<property name="javax.persistence.jdbc.user" value="sql7273308"/>-->
             <!--<property name="javax.persistence.jdbc.password" value="mSN7JtquFz"/>-->
             <property name="javax.persistence.schema-generation.database.action" value="create"/>

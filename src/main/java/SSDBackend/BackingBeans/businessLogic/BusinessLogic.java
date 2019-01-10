@@ -1,4 +1,4 @@
-package SSDBackend.BackingBeans.BusinessLogic;
+package SSDBackend.BackingBeans.businessLogic;
 
 import lombok.Data;
 

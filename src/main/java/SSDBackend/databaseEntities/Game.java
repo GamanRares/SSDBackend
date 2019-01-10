@@ -1,8 +1,7 @@
-package SSDBackend.DatabaseEntities;
+package SSDBackend.databaseEntities;
 
 import lombok.Data;
 
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;

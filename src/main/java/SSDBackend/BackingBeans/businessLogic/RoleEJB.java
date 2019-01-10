@@ -1,7 +1,7 @@
-package SSDBackend.BackingBeans.BusinessLogic;
+package SSDBackend.BackingBeans.businessLogic;
 
-import SSDBackend.DatabaseEntities.Role;
-import SSDBackend.DatabaseEntities.Role_;
+import SSDBackend.databaseEntities.Role;
+import SSDBackend.databaseEntities.Role_;
 import lombok.Data;
 
 import javax.ejb.Stateless;

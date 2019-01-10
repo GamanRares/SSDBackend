@@ -1,4 +1,4 @@
-package SSDBackend.Validators;
+package SSDBackend.validators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
