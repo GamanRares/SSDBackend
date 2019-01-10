@@ -4,6 +4,7 @@ import SSDBackend.databaseEntities.Role;
 import SSDBackend.databaseEntities.User;
 import SSDBackend.databaseEntities.User_;
 import SSDBackend.exceptions.NoSuchRoleException;
+import SSDBackend.utility.MD5Encryption;
 import lombok.Data;
 
 import javax.ejb.EJBException;
@@ -106,7 +107,7 @@ public class UserEJB implements Serializable {
     private void setUserAttributes(User user, String username, String password, Boolean active, String lastName, String firstName, String email, Role role) {
 
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(MD5Encryption.encrypt(password));
         user.setActive(active);
         user.setFirstName(firstName);
         user.setLastName(lastName);
