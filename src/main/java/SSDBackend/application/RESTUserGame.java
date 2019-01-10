@@ -104,7 +104,7 @@ public class RESTUserGame {
     }
 
     //localhost:8080/SSDBackend/userGame/updateScore?username=username&gameName=gameName&score=score
-    @POST
+    @GET
     @Path("/updateScore")
     @Produces(MediaType.APPLICATION_JSON)
     public boolean updateScore(@QueryParam("username") String username, @QueryParam("gameName") String gameName, @QueryParam("score") Long score) {

@@ -80,7 +80,7 @@ public class UserGameEJB implements Serializable {
 
     public List<UserGame> getAllUserGamesOrdered(String gameNameOrder, String scoreOrder) throws NoSuchOrderException {
 
-        if ( (!gameNameOrder.equals("ASC") && !gameNameOrder.equals("DESC")) || (!scoreOrder.equals("ASC") && !scoreOrder.equals("DESC")))
+        if ((!gameNameOrder.equals("ASC") && !gameNameOrder.equals("DESC")) || (!scoreOrder.equals("ASC") && !scoreOrder.equals("DESC")))
             throw new NoSuchOrderException("Order must be ASC or DESC only");
 
         CriteriaBuilder builder = this.businessLogic.getEm().getCriteriaBuilder();
@@ -113,7 +113,8 @@ public class UserGameEJB implements Serializable {
 
         UserGame userGame = this.getUserGame(username, gameName);
 
-        userGame.setScore(score);
+        if (userGame.getScore() < score)
+            userGame.setScore(score);
 
     }
 

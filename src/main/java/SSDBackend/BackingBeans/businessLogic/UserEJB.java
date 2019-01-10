@@ -72,7 +72,7 @@ public class UserEJB implements Serializable {
 
         User user = this.getUserByUsername(username);
 
-        return user != null && user.getPassword().equals(password);
+        return user != null && user.getPassword().equals(MD5Encryption.encrypt(password));
 
     }
 
